@@ -15,16 +15,27 @@ const ramos = [
   { id: "fisiologia", nombre: "Fisiología", prereqs: ["bioquimica"], semestre: 3 },
   { id: "cuidadosFam", nombre: "Cuidados de Enfermería de la Persona y Familia", prereqs: [], semestre: 3 },
   { id: "educacionSalud", nombre: "Educación para la Salud", prereqs: ["cuidadosI", "naturaleza"], semestre: 3 },
+  { id: "efg3", nombre: "Electivo de Formación General", prereqs: [], semestre: 3 },
 
   { id: "farmacologia", nombre: "Farmacología Clínica", prereqs: ["fisiologia"], semestre: 4 },
   { id: "fisiopatologia", nombre: "Fisiopatología General y de Sistemas", prereqs: ["fisiologia"], semestre: 4 },
   { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["naturaleza", "cuidadosI", "saludPublica", "saludCultura"], semestre: 4 },
+  { id: "efg4", nombre: "Electivo de Formación General", prereqs: [], semestre: 4 },
 
   { id: "adultoMayor", nombre: "Cuidados Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
+  { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
+  { id: "efg5_2", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
+
   { id: "infancia", nombre: "Cuidados en Infancia y Adolescencia", prereqs: ["cuidadosII"], semestre: 6 },
+  { id: "efg6", nombre: "Electivo de Formación General", prereqs: [], semestre: 6 },
+
   { id: "familiar", nombre: "Enfermería Familiar y Comunitaria", prereqs: ["cuidadosII"], semestre: 7 },
   { id: "mental", nombre: "Cuidados en Salud Mental", prereqs: ["cuidadosII"], semestre: 7 },
+  { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
+
   { id: "cronicos", nombre: "Cuidados Condiciones Crónicas", prereqs: ["adultoMayor", "infancia", "familiar", "mental"], semestre: 8 },
+  { id: "efg8", nombre: "Electivo de Formación General", prereqs: [], semestre: 8 },
+
   { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["cronicos"], semestre: 9 },
   { id: "internadoUrg", nombre: "Internado Urgencias", prereqs: ["cronicos"], semestre: 9 },
   { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
