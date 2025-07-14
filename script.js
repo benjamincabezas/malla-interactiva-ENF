@@ -26,7 +26,6 @@ const ramos = [
   { id: "educacionSalud", nombre: "Educación para la Salud", prereqs: ["cuidadosI", "naturaleza"], semestre: 4 },
   { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["saludPublica", "saludCultura", "naturaleza", "cuidadosI"], semestre: 4 },
   { id: "informaticaI", nombre: "Informática en Salud I", prereqs: [], semestre: 4 },
-  { id: "teologico", nombre: "Teológico", prereqs: [], semestre: 4 },
   { id: "gestionI", nombre: "Gestión y Liderazgo I", prereqs: [], semestre: 4 },
   { id: "efg4", nombre: "Electivo de Formación General", prereqs: [], semestre: 4 },
 
