@@ -15,7 +15,7 @@ const ramos = [
   { id: "filosofia", nombre: "Filosofía: ¿Para Qué?", prereqs: [], semestre: 2 },
 
   // 3° semestre
-  { id: "microbiologia", nombre: "Microbiología e Infección Clínica", prereqs: ["bioquimica"], semestre: 3 },
+  { id: "microbiologia", nombre: "Microbiología e Infectología Clínica", prereqs: ["bioquimica"], semestre: 3 },
   { id: "fisiologia", nombre: "Fisiología", prereqs: ["bioquimica"], semestre: 3 },
   { id: "cuidadosFam", nombre: "Cuidados de Enfermería de la Persona y Familia", prereqs: [], semestre: 3 },
   { id: "educacionSalud", nombre: "Educación para la Salud", prereqs: ["cuidadosI", "naturaleza"], semestre: 3 },
@@ -23,43 +23,45 @@ const ramos = [
 
   // 4° semestre
   { id: "farmacologia", nombre: "Farmacología Clínica", prereqs: ["fisiologia"], semestre: 4 },
-  { id: "fisiopatologia", nombre: "Fisiopatología General y de Sistemas", prereqs: ["fisiologia"], semestre: 4 },
-  { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["naturaleza", "cuidadosI", "saludPublica", "saludCultura"], semestre: 4 },
+  { id: "fisiopatologia", nombre: "Fisiopatología", prereqs: ["fisiologia"], semestre: 4 },
+  { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["cuidadosI", "naturaleza", "saludPublica", "saludCultura"], semestre: 4 },
   { id: "informaticaI", nombre: "Informática en Salud I", prereqs: [], semestre: 4 },
+  { id: "teologico", nombre: "Teológico", prereqs: [], semestre: 4 },
   { id: "gestionI", nombre: "Gestión y Liderazgo I", prereqs: [], semestre: 4 },
   { id: "efg4", nombre: "Electivo de Formación General", prereqs: [], semestre: 4 },
 
   // 5° semestre
-  { id: "adultoMayor", nombre: "Cuidados Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
+  { id: "adultoMayor", nombre: "Cuidados de Enfermería del Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
+  { id: "infancia", nombre: "Cuidados de Enfermería de la Infancia y Adolescencia", prereqs: ["cuidadosII"], semestre: 5 },
+  { id: "familiar", nombre: "Salud Familiar y Comunitaria", prereqs: ["saludPublica"], semestre: 5 },
+  { id: "mental", nombre: "Cuidados de Enfermería en Salud Mental", prereqs: ["cuidadosII"], semestre: 5 },
   { id: "dimension", nombre: "Dimensión Interpersonal del Cuidado de Enfermería", prereqs: [], semestre: 5 },
   { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
   { id: "efg5_2", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
 
   // 6° semestre
-  { id: "infancia", nombre: "Cuidados en Infancia y Adolescencia", prereqs: ["cuidadosII"], semestre: 6 },
+  { id: "cronicos", nombre: "Cuidados de Enfermería en Personas con Condiciones Crónicas", prereqs: ["cuidadosII"], semestre: 6 },
   { id: "etica", nombre: "Fundamentos Éticos del Ejercicio Profesional", prereqs: [], semestre: 6 },
   { id: "optativo6", nombre: "Optativo de Profundización", prereqs: [], semestre: 6 },
   { id: "efg6", nombre: "Electivo de Formación General", prereqs: [], semestre: 6 },
 
   // 7° semestre
-  { id: "familiar", nombre: "Enfermería en Salud Familiar y Comunitaria", prereqs: ["cuidadosII"], semestre: 7 },
-  { id: "mental", nombre: "Cuidados en Salud Mental", prereqs: ["cuidadosII"], semestre: 7 },
   { id: "investigacion7", nombre: "Investigación", prereqs: [], semestre: 7 },
   { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
 
   // 8° semestre
-  { id: "cronicos", nombre: "Cuidados en Personas con Condiciones Crónicas", prereqs: ["adultoMayor", "infancia", "familiar", "mental"], semestre: 8 },
   { id: "informaticaII", nombre: "Informática en Salud II", prereqs: [], semestre: 8 },
   { id: "gestionII", nombre: "Gestión y Liderazgo II", prereqs: [], semestre: 8 },
   { id: "optativo8", nombre: "Optativo de Profundización", prereqs: [], semestre: 8 },
   { id: "efg8", nombre: "Electivo de Formación General", prereqs: [], semestre: 8 },
 
   // 9° semestre
-  { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["cronicos"], semestre: 9 },
-  { id: "internadoUrg", nombre: "Internado en Urgencias", prereqs: ["cronicos"], semestre: 9 },
+  { id: "internadoHosp", nombre: "Internado de Enfermería Hospitalario", prereqs: ["adultoMayor", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
+  { id: "internadoUrg", nombre: "Internado en Urgencias", prereqs: ["adultoMayor", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
 
   // 10° semestre
-  { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
+  { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 },
+  { id: "internadoElectivo", nombre: "Internado Electivo", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
 ];
 
 const estadoRamos = {};
