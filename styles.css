@@ -52,14 +52,15 @@ h1 {
 .ramo.bloqueado {
   opacity: 0.3;
   cursor: not-allowed;
+  background-color: #f0f0f0;
 }
 
 .ramo.pendiente {
-  background-color: #f8d7da;
-  border-color: #dc3545;
+  background-color: #f8d7da; /* rojo suave */
+  border-color: #dc3545;     /* borde rojo */
 }
 
 .ramo.aprobado {
-  background-color: #b6e7a0;
-  border-color: #4caf50;
+  background-color: #b6e7a0; /* verde suave */
+  border-color: #4caf50;     /* borde verde */
 }
