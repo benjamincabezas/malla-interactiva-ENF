@@ -13,6 +13,8 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .ramo {
@@ -23,6 +25,7 @@ h1 {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
+    font-size: 14px;
 }
 
 .ramo.bloqueado {
@@ -39,4 +42,3 @@ h1 {
 .ramo:hover:not(.bloqueado):not(.aprobado) {
     background-color: #e2e6ea;
 }
-
