@@ -19,7 +19,7 @@ h1 {
   background-color: #ffffff;
   border: 2px solid #ddd;
   border-radius: 10px;
-  width: 260px;
+  width: 270px;
   padding: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -56,11 +56,11 @@ h1 {
 }
 
 .ramo.pendiente {
-  background-color: #f8d7da; /* rojo claro */
+  background-color: #f8d7da;
   border-color: #dc3545;
 }
 
 .ramo.aprobado {
-  background-color: #b6e7a0; /* verde claro */
+  background-color: #b6e7a0;
   border-color: #4caf50;
 }
