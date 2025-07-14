@@ -11,22 +11,42 @@ h1 {
 #malla {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  gap: 10px;
+}
+
+.semestre {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  width: 240px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.semestre h2 {
+  text-align: center;
+  font-size: 18px;
+  margin: 5px 0 10px;
+}
+
+.contenedor-ramos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .ramo {
-  width: 200px;
-  padding: 10px;
-  border: 2px solid #333;
-  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #333;
+  border-radius: 6px;
   text-align: center;
   transition: transform 0.2s, opacity 0.2s;
   cursor: pointer;
 }
 
 .ramo.disponible:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .ramo.bloqueado {
@@ -34,11 +54,12 @@ h1 {
   cursor: not-allowed;
 }
 
+.ramo.pendiente {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+}
+
 .ramo.aprobado {
   background-color: #b6e7a0;
   border-color: #4caf50;
-}
-
-.ramo.disponible {
-  background-color: #ffffff;
 }
