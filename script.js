@@ -5,7 +5,7 @@ const ramos = [
   { id: "psicologia", nombre: "Psicología", prereqs: [], semestre: 1 },
   { id: "naturaleza", nombre: "Naturaleza de la Enfermería", prereqs: [], semestre: 1 },
   { id: "saludCultura", nombre: "Salud, Cultura y Sociedad Global", prereqs: [], semestre: 1 },
-  { id: "investigacionBase", nombre: "Metodología de la Investigación", prereqs: [], semestre: 1 },
+  { id: "investigacion", nombre: "Metodología de la Investigación", prereqs: [], semestre: 1 },
 
   // 2° semestre
   { id: "bioquimica", nombre: "Bioquímica Celular", prereqs: ["quimica"], semestre: 2 },
