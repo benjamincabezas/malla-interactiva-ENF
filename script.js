@@ -1,29 +1,33 @@
 const ramos = [
-  { id: "anatomia", nombre: "Anatomía General y del Desarrollo", prereqs: [] },
-  { id: "quimica", nombre: "Química", prereqs: [] },
-  { id: "psicologia", nombre: "Psicología", prereqs: [] },
-  { id: "naturaleza", nombre: "Naturaleza de la Enfermería", prereqs: [] },
-  { id: "saludCultura", nombre: "Salud, Cultura y Sociedad Global", prereqs: [] },
-  { id: "investigacion", nombre: "Metodología de la Investigación", prereqs: [] },
-  { id: "bioquimica", nombre: "Bioquímica Celular", prereqs: ["quimica"] },
-  { id: "bioestadistica", nombre: "Bioestadística", prereqs: [] },
-  { id: "cuidadosI", nombre: "Cuidados de Enfermería I", prereqs: [] },
-  { id: "saludPublica", nombre: "Salud Pública", prereqs: [] },
-  { id: "microbiologia", nombre: "Microbiología e Infección Clínica", prereqs: ["bioquimica"] },
-  { id: "fisiologia", nombre: "Fisiología", prereqs: ["bioquimica"] },
-  { id: "cuidadosFam", nombre: "Cuidados de Enfermería de la Persona y Familia", prereqs: [] },
-  { id: "educacionSalud", nombre: "Educación para la Salud", prereqs: ["cuidadosI", "naturaleza"] },
-  { id: "farmacologia", nombre: "Farmacología Clínica", prereqs: ["fisiologia"] },
-  { id: "fisiopatologia", nombre: "Fisiopatología General y de Sistemas", prereqs: ["fisiologia"] },
-  { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["naturaleza", "cuidadosI", "saludPublica", "saludCultura"] },
-  { id: "adultoMayor", nombre: "Cuidados de Enfermería del Adulto y Persona Mayor", prereqs: ["cuidadosII"] },
-  { id: "infancia", nombre: "Cuidados de Enfermería en la Infancia y Adolescencia", prereqs: ["cuidadosII"] },
-  { id: "familiar", nombre: "Enfermería en Salud Familiar y Comunitaria", prereqs: ["cuidadosII"] },
-  { id: "mental", nombre: "Cuidados de Enfermería en Salud Mental", prereqs: ["cuidadosII"] },
-  { id: "cronicos", nombre: "Cuidados en Condiciones Crónicas", prereqs: ["adultoMayor", "infancia", "familiar", "mental"] },
-  { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["cronicos"] },
-  { id: "internadoUrg", nombre: "Internado Urgencias", prereqs: ["cronicos"] },
-  { id: "internadoAmb", nombre: "Internado Atención Ambulatoria", prereqs: ["internadoHosp", "internadoUrg"] }
+  { id: "anatomia", nombre: "Anatomía General y del Desarrollo", prereqs: [], semestre: 1 },
+  { id: "quimica", nombre: "Química", prereqs: [], semestre: 1 },
+  { id: "psicologia", nombre: "Psicología", prereqs: [], semestre: 1 },
+  { id: "naturaleza", nombre: "Naturaleza de la Enfermería", prereqs: [], semestre: 1 },
+  { id: "saludCultura", nombre: "Salud, Cultura y Sociedad Global", prereqs: [], semestre: 1 },
+  { id: "investigacion", nombre: "Metodología de la Investigación", prereqs: [], semestre: 1 },
+
+  { id: "bioquimica", nombre: "Bioquímica Celular", prereqs: ["quimica"], semestre: 2 },
+  { id: "bioestadistica", nombre: "Bioestadística", prereqs: [], semestre: 2 },
+  { id: "cuidadosI", nombre: "Cuidados de Enfermería I", prereqs: [], semestre: 2 },
+  { id: "saludPublica", nombre: "Salud Pública", prereqs: [], semestre: 2 },
+
+  { id: "microbiologia", nombre: "Microbiología e Infección Clínica", prereqs: ["bioquimica"], semestre: 3 },
+  { id: "fisiologia", nombre: "Fisiología", prereqs: ["bioquimica"], semestre: 3 },
+  { id: "cuidadosFam", nombre: "Cuidados de Enfermería de la Persona y Familia", prereqs: [], semestre: 3 },
+  { id: "educacionSalud", nombre: "Educación para la Salud", prereqs: ["cuidadosI", "naturaleza"], semestre: 3 },
+
+  { id: "farmacologia", nombre: "Farmacología Clínica", prereqs: ["fisiologia"], semestre: 4 },
+  { id: "fisiopatologia", nombre: "Fisiopatología General y de Sistemas", prereqs: ["fisiologia"], semestre: 4 },
+  { id: "cuidadosII", nombre: "Cuidados de Enfermería II", prereqs: ["naturaleza", "cuidadosI", "saludPublica", "saludCultura"], semestre: 4 },
+
+  { id: "adultoMayor", nombre: "Cuidados Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
+  { id: "infancia", nombre: "Cuidados en Infancia y Adolescencia", prereqs: ["cuidadosII"], semestre: 6 },
+  { id: "familiar", nombre: "Enfermería Familiar y Comunitaria", prereqs: ["cuidadosII"], semestre: 7 },
+  { id: "mental", nombre: "Cuidados en Salud Mental", prereqs: ["cuidadosII"], semestre: 7 },
+  { id: "cronicos", nombre: "Cuidados Condiciones Crónicas", prereqs: ["adultoMayor", "infancia", "familiar", "mental"], semestre: 8 },
+  { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["cronicos"], semestre: 9 },
+  { id: "internadoUrg", nombre: "Internado Urgencias", prereqs: ["cronicos"], semestre: 9 },
+  { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
 ];
 
 const estadoRamos = {};
@@ -32,29 +36,47 @@ function renderMalla() {
   const malla = document.getElementById("malla");
   malla.innerHTML = "";
 
-  ramos.forEach(ramo => {
-    const div = document.createElement("div");
-    div.className = "ramo";
+  const totalSemestres = Math.max(...ramos.map(r => r.semestre));
 
-    const cumplidos = ramo.prereqs.every(id => estadoRamos[id]);
-    if (ramo.prereqs.length === 0 || cumplidos) {
-      div.classList.add("disponible");
-    } else {
-      div.classList.add("bloqueado");
-    }
+  for (let s = 1; s <= totalSemestres; s++) {
+    const contenedorSemestre = document.createElement("div");
+    contenedorSemestre.className = "semestre";
 
-    if (estadoRamos[ramo.id]) {
-      div.classList.add("aprobado");
-    }
+    const titulo = document.createElement("h2");
+    titulo.textContent = `Semestre ${s}`;
+    contenedorSemestre.appendChild(titulo);
 
-    div.textContent = ramo.nombre;
+    const contenedorRamos = document.createElement("div");
+    contenedorRamos.className = "contenedor-ramos";
 
-    if (div.classList.contains("disponible")) {
-      div.addEventListener("click", () => toggleAprobado(ramo.id));
-    }
+    ramos.filter(r => r.semestre === s).forEach(ramo => {
+      const div = document.createElement("div");
+      div.className = "ramo";
 
-    malla.appendChild(div);
-  });
+      const cumplidos = ramo.prereqs.every(id => estadoRamos[id]);
+      if (ramo.prereqs.length === 0 || cumplidos) {
+        div.classList.add("disponible");
+        if (estadoRamos[ramo.id]) {
+          div.classList.add("aprobado");
+        } else {
+          div.classList.add("pendiente");
+        }
+      } else {
+        div.classList.add("bloqueado");
+      }
+
+      div.textContent = ramo.nombre;
+
+      if (div.classList.contains("disponible")) {
+        div.addEventListener("click", () => toggleAprobado(ramo.id));
+      }
+
+      contenedorRamos.appendChild(div);
+    });
+
+    contenedorSemestre.appendChild(contenedorRamos);
+    malla.appendChild(contenedorSemestre);
+  }
 }
 
 function toggleAprobado(id) {
