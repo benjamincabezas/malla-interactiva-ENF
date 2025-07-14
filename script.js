@@ -15,7 +15,7 @@ const ramos = [
   { id: "filosofia", nombre: "Filosofía: ¿Para Qué?", prereqs: [], semestre: 2 },
 
   // 3° semestre
-  { id: "microbiologia", nombre: "Microbiología e Infectología Clínica", prereqs: ["bioquimica"], semestre: 3 },
+  { id: "microbiologia", nombre: "Microbiología e Infectología", prereqs: ["bioquimica"], semestre: 3 },
   { id: "fisiologia", nombre: "Fisiología", prereqs: ["quimica"], semestre: 3 },
   { id: "cuidadosFam", nombre: "Cuidados de la Persona y Familia", prereqs: ["saludCultura", "naturaleza", "cuidadosI", "saludPublica"], semestre: 3 },
   { id: "efg3", nombre: "Electivo de Formación General", prereqs: [], semestre: 3 },
@@ -33,7 +33,7 @@ const ramos = [
   // 5° semestre
   { id: "adulto", nombre: "CE del Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
   { id: "infancia", nombre: "CE de la Infancia y Adolescencia", prereqs: ["fisiopatologia", "cuidadosFam", "farmacologia"], semestre: 5 },
-  { id: "dimension", nombre: "Dimensión Interpersonal del Cuidado de Enfermería", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 5 },
+  { id: "dimension", nombre: "Dimensión Interpersonal", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 5 },
   { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
   { id: "efg5_2", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
 
