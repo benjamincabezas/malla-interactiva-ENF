@@ -33,4 +33,101 @@ const ramos = [
   { id: "adulto", nombre: "CE del Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
   { id: "infancia", nombre: "CE de la Infancia y Adolescencia", prereqs: ["fisiopatologia", "cuidadosFam", "farmacologia"], semestre: 5 },
   { id: "dimension", nombre: "Dimensión Interpersonal", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 5 },
-  { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], se_
+  { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
+  { id: "efg5_2", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
+
+  // 6° semestre
+  { id: "cronicos", nombre: "CE en Personas con Condiciones Crónicas", prereqs: ["cuidadosII"], semestre: 6 },
+  { id: "etica", nombre: "Fundamentos Éticos", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 6 },
+  { id: "optativo6", nombre: "Optativo de Profundización", prereqs: [], semestre: 6 },
+  { id: "efg6", nombre: "Electivo de Formación General", prereqs: [], semestre: 6 },
+
+  // 7° semestre
+  { id: "familiar", nombre: "Salud Familiar y Comunitaria", prereqs: ["dimension", "etica"], semestre: 7 },
+  { id: "mental", nombre: "CE en Salud Mental", prereqs: ["etica", "infancia", "dimension"], semestre: 7 },
+  { id: "investigacion7", nombre: "Investigación", prereqs: ["etica"], semestre: 7 }, // Se elimina dependencia a informáticaI
+  { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
+
+  // 8° semestre
+  { id: "informaticaII", nombre: "Informática en Salud II", prereqs: ["familiar", "informaticaI"], semestre: 8 },
+  { id: "gestionII", nombre: "Gestión y Liderazgo II", prereqs: ["gestionI", "etica"], semestre: 8 },
+  { id: "optativo8", nombre: "Optativo de Profundización", prereqs: [], semestre: 8 },
+  { id: "efg8", nombre: "Electivo de Formación General", prereqs: [], semestre: 8 },
+
+  // 9° semestre
+  { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["adulto", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
+  { id: "internadoUrg", nombre: "Internado en Urgencias", prereqs: ["adulto", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
+
+  // 10° semestre
+  { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 },
+  { id: "internadoElectivo", nombre: "Internado Electivo", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
+];
+
+const estadoRamos = {};
+
+function renderMalla() {
+  const malla = document.getElementById("malla");
+  malla.innerHTML = "";
+
+  const totalSemestres = Math.max(...ramos.map(r => r.semestre));
+
+  for (let s = 1; s <= totalSemestres; s++) {
+    const contenedorSemestre = document.createElement("div");
+    contenedorSemestre.className = "semestre";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = `Semestre ${s}`;
+    contenedorSemestre.appendChild(titulo);
+
+    const contenedorRamos = document.createElement("div");
+    contenedorRamos.className = "contenedor-ramos";
+
+    ramos.filter(r => r.semestre === s).forEach(ramo => {
+      const div = document.createElement("div");
+      div.className = "ramo";
+
+      const cumplidos = ramo.prereqs.every(id => estadoRamos[id]);
+      if (ramo.prereqs.length === 0 || cumplidos) {
+        div.classList.add("disponible");
+        if (estadoRamos[ramo.id]) {
+          div.classList.add("aprobado");
+        } else {
+          div.classList.add("pendiente");
+        }
+      } else {
+        div.classList.add("bloqueado");
+      }
+
+      div.textContent = ramo.nombre;
+
+      if (div.classList.contains("disponible")) {
+        div.addEventListener("click", () => toggleAprobado(ramo.id));
+      }
+
+      contenedorRamos.appendChild(div);
+    });
+
+    contenedorSemestre.appendChild(contenedorRamos);
+    malla.appendChild(contenedorSemestre);
+  }
+}
+
+function toggleAprobado(id) {
+  if (estadoRamos[id]) {
+    desmarcarConDependientes(id);
+  } else {
+    estadoRamos[id] = true;
+  }
+  renderMalla();
+}
+
+function desmarcarConDependientes(id) {
+  estadoRamos[id] = false;
+  ramos.forEach(r => {
+    if (r.prereqs.includes(id) && estadoRamos[r.id]) {
+      desmarcarConDependientes(r.id);
+    }
+  });
+}
+
+renderMalla();
