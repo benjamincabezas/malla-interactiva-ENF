@@ -5,7 +5,7 @@ const ramos = [
   { id: "psicologia", nombre: "Psicología", prereqs: [], semestre: 1 },
   { id: "naturaleza", nombre: "Naturaleza de la Enfermería", prereqs: [], semestre: 1 },
   { id: "saludCultura", nombre: "Salud, Cultura y Sociedad Global", prereqs: [], semestre: 1 },
-  { id: "investigacion", nombre: "Metodología de la Investigación", prereqs: [], semestre: 1 },
+  { id: "investigacionBase", nombre: "Metodología de la Investigación", prereqs: [], semestre: 1 },
 
   // 2° semestre
   { id: "bioquimica", nombre: "Bioquímica Celular", prereqs: ["quimica"], semestre: 2 },
@@ -45,7 +45,7 @@ const ramos = [
   // 7° semestre
   { id: "familiar", nombre: "Salud Familiar y Comunitaria", prereqs: ["dimension", "etica"], semestre: 7 },
   { id: "mental", nombre: "CE en Salud Mental", prereqs: ["etica", "infancia", "dimension"], semestre: 7 },
-  { id: "investigacion7", nombre: "Investigación", prereqs: ["etica"], semestre: 7 },
+  { id: "investigacion7", nombre: "Investigación", prereqs: ["investigacionBase", "etica"], semestre: 7 },
   { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
 
   // 8° semestre
@@ -60,74 +60,4 @@ const ramos = [
 
   // 10° semestre
   { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 },
-  { id: "internadoElectivo", nombre: "Internado Electivo", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
-];
-
-const estadoRamos = {};
-
-function renderMalla() {
-  const malla = document.getElementById("malla");
-  malla.innerHTML = "";
-
-  const totalSemestres = Math.max(...ramos.map(r => r.semestre));
-
-  for (let s = 1; s <= totalSemestres; s++) {
-    const contenedorSemestre = document.createElement("div");
-    contenedorSemestre.className = "semestre";
-
-    const titulo = document.createElement("h2");
-    titulo.textContent = `Semestre ${s}`;
-    contenedorSemestre.appendChild(titulo);
-
-    const contenedorRamos = document.createElement("div");
-    contenedorRamos.className = "contenedor-ramos";
-
-    ramos.filter(r => r.semestre === s).forEach(ramo => {
-      const div = document.createElement("div");
-      div.className = "ramo";
-
-      const cumplidos = ramo.prereqs.every(id => estadoRamos[id]);
-      if (ramo.prereqs.length === 0 || cumplidos) {
-        div.classList.add("disponible");
-        if (estadoRamos[ramo.id]) {
-          div.classList.add("aprobado");
-        } else {
-          div.classList.add("pendiente");
-        }
-      } else {
-        div.classList.add("bloqueado");
-      }
-
-      div.textContent = ramo.nombre;
-
-      if (div.classList.contains("disponible")) {
-        div.addEventListener("click", () => toggleAprobado(ramo.id));
-      }
-
-      contenedorRamos.appendChild(div);
-    });
-
-    contenedorSemestre.appendChild(contenedorRamos);
-    malla.appendChild(contenedorSemestre);
-  }
-}
-
-function toggleAprobado(id) {
-  if (estadoRamos[id]) {
-    desmarcarConDependientes(id);
-  } else {
-    estadoRamos[id] = true;
-  }
-  renderMalla();
-}
-
-function desmarcarConDependientes(id) {
-  estadoRamos[id] = false;
-  ramos.forEach(r => {
-    if (r.prereqs.includes(id) && estadoRamos[r.id]) {
-      desmarcarConDependientes(r.id);
-    }
-  });
-}
-
-renderMalla();
+  { id: "inte
