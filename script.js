@@ -45,7 +45,7 @@ const ramos = [
   // 7° semestre
   { id: "familiar", nombre: "Salud Familiar y Comunitaria", prereqs: ["dimension", "etica"], semestre: 7 },
   { id: "mental", nombre: "CE en Salud Mental", prereqs: ["etica", "infancia", "dimension"], semestre: 7 },
-  { id: "investigacion7", nombre: "Investigación", prereqs: ["etica"], semestre: 7 }, // Se elimina dependencia a informáticaI
+  { id: "investigacion7", nombre: "Investigación", prereqs: ["etica"], semestre: 7 },
   { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
 
   // 8° semestre
