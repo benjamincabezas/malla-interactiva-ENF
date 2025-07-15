@@ -64,5 +64,5 @@ h1 {
 .ramo.aprobado {
   background-color: #b6e7a0;
   border-color: #4caf50;
-  text-decoration: line-through; /* Tachar al aprobar */
+  text-decoration: line-through;
 }
