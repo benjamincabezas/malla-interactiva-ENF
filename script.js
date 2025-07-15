@@ -61,3 +61,5 @@ const ramos = [
   // 10° semestre
   { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 },
   { id: "inte
+
+   
