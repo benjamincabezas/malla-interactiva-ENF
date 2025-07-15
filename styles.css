@@ -1,11 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #007BFF; /* Azul brillante */
   margin: 20px;
 }
 
 h1 {
   text-align: center;
+  color: white;
 }
 
 #malla {
@@ -63,4 +64,5 @@ h1 {
 .ramo.aprobado {
   background-color: #b6e7a0;
   border-color: #4caf50;
+  text-decoration: line-through; /* Texto tachado al aprobar */
 }
