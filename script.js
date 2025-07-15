@@ -33,31 +33,4 @@ const ramos = [
   { id: "adulto", nombre: "CE del Adulto y Persona Mayor", prereqs: ["cuidadosII"], semestre: 5 },
   { id: "infancia", nombre: "CE de la Infancia y Adolescencia", prereqs: ["fisiopatologia", "cuidadosFam", "farmacologia"], semestre: 5 },
   { id: "dimension", nombre: "Dimensión Interpersonal", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 5 },
-  { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
-  { id: "efg5_2", nombre: "Electivo de Formación General", prereqs: [], semestre: 5 },
-
-  // 6° semestre
-  { id: "cronicos", nombre: "CE en Personas con Condiciones Crónicas", prereqs: ["cuidadosII"], semestre: 6 },
-  { id: "etica", nombre: "Fundamentos Éticos", prereqs: ["cuidadosII", "cuidadosFam"], semestre: 6 },
-  { id: "optativo6", nombre: "Optativo de Profundización", prereqs: [], semestre: 6 },
-  { id: "efg6", nombre: "Electivo de Formación General", prereqs: [], semestre: 6 },
-
-  // 7° semestre
-  { id: "familiar", nombre: "Salud Familiar y Comunitaria", prereqs: ["dimension", "etica"], semestre: 7 },
-  { id: "mental", nombre: "CE en Salud Mental", prereqs: ["etica", "infancia", "dimension"], semestre: 7 },
-  { id: "investigacion7", nombre: "Investigación", prereqs: ["informaticaI", "etica"], semestre: 7 },
-  { id: "efg7", nombre: "Electivo de Formación General", prereqs: [], semestre: 7 },
-
-  // 8° semestre
-  { id: "informaticaII", nombre: "Informática en Salud II", prereqs: ["familiar", "informaticaI"], semestre: 8 },
-  { id: "gestionII", nombre: "Gestión y Liderazgo II", prereqs: ["gestionI", "etica"], semestre: 8 },
-  { id: "optativo8", nombre: "Optativo de Profundización", prereqs: [], semestre: 8 },
-  { id: "efg8", nombre: "Electivo de Formación General", prereqs: [], semestre: 8 },
-
-  // 9° semestre
-  { id: "internadoHosp", nombre: "Internado Hospitalario", prereqs: ["adulto", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
-  { id: "internadoUrg", nombre: "Internado en Urgencias", prereqs: ["adulto", "infancia", "mental", "cronicos", "familiar"], semestre: 9 },
-
-  // 10° semestre
-  { id: "internadoAmb", nombre: "Internado Ambulatorio", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 },
-  { id: "internadoElectivo", nombre: "Internado Electivo", prereqs: ["internadoHosp]()
+  { id: "efg5_1", nombre: "Electivo de Formación General", prereqs: [], se_
