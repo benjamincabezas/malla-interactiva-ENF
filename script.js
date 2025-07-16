@@ -133,3 +133,5 @@ function desmarcarConDependientes(id) {
 }
 
 renderMalla();
+
+// Autor: Benjamin Cabezas Marín
