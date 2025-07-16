@@ -1,4 +1,4 @@
-const ramos = [
+ const ramos = [
   // 1° semestre
   { id: "anatomia", nombre: "Anatomía General y del Desarrollo", prereqs: [], semestre: 1 },
   { id: "quimica", nombre: "Química", prereqs: [], semestre: 1 },
@@ -63,7 +63,7 @@ const ramos = [
   { id: "internadoElectivo", nombre: "Internado Electivo", prereqs: ["internadoHosp", "internadoUrg"], semestre: 10 }
 ];
 
-const estadoRamos = {};
+const estadoRamos = JSON.parse(localStorage.getItem('estadoRamos')) || {};
 
 function renderMalla() {
   const malla = document.getElementById("malla");
@@ -80,13 +80,14 @@ function renderMalla() {
     contenedorSemestre.appendChild(titulo);
 
     const contenedorRamos = document.createElement("div");
-    contenedorRamos.className = "contenedor-ramos";
 
     ramos.filter(r => r.semestre === s).forEach(ramo => {
       const div = document.createElement("div");
       div.className = "ramo";
+      div.textContent = ramo.nombre;
 
       const cumplidos = ramo.prereqs.every(id => estadoRamos[id]);
+
       if (ramo.prereqs.length === 0 || cumplidos) {
         div.classList.add("disponible");
         if (estadoRamos[ramo.id]) {
@@ -94,14 +95,14 @@ function renderMalla() {
         } else {
           div.classList.add("pendiente");
         }
+        div.addEventListener("click", () => toggleAprobado(ramo.id));
       } else {
         div.classList.add("bloqueado");
-      }
-
-      div.textContent = ramo.nombre;
-
-      if (div.classList.contains("disponible")) {
-        div.addEventListener("click", () => toggleAprobado(ramo.id));
+        const faltantes = ramo.prereqs.filter(p => !estadoRamos[p]).map(p => {
+          const encontrado = ramos.find(r => r.id === p);
+          return encontrado ? encontrado.nombre : p;
+        });
+        div.title = "Requiere: " + faltantes.join(", ");
       }
 
       contenedorRamos.appendChild(div);
@@ -118,6 +119,7 @@ function toggleAprobado(id) {
   } else {
     estadoRamos[id] = true;
   }
+  guardarProgreso();
   renderMalla();
 }
 
@@ -128,6 +130,10 @@ function desmarcarConDependientes(id) {
       desmarcarConDependientes(r.id);
     }
   });
+}
+
+function guardarProgreso() {
+  localStorage.setItem("estadoRamos", JSON.stringify(estadoRamos));
 }
 
 renderMalla();
